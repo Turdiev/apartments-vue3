@@ -1,0 +1,55 @@
+/*
+** Colors
+*/
+$body-color: #FAFAFA;
+$white: #fff;
+$black: #000;
+$yellow: #FDC83E;
+
+$gray-700: #666666;
+$gray-600: #929292;
+$gray-200: #EFF2F9;
+$gray-100: #FAFAFA;
+
+$blue-900: #263E66;
+$blue-800: #224E9C;
+$blue-700: #004F9E;
+$blue-300: #9AADC6;
+$blue-100: #E5F3FF;
+
+/*
+** Font-family
+*/
+$font-primary: "Averta";
+$font-base: $font-primary;
+
+
+/*
+** Font-size
+*/
+$font-size: 16px;
+
+
+
+/*
+** Breakpoints
+*/
+$sm-mobile: 375px;
+$mobile: 768px;
+$tablet: 992px;
+$laptop: 1270px;
+
+$breakpoints: (
+        'sm-mobile': (max-width: $sm-mobile),
+        'mobile': (max-width: $mobile),
+        'tablet': (max-width: $tablet - 1),
+        'laptop': (max-width: $laptop - 1)
+) !default;
+
+/*
+** Grids
+*/
+
+$x-offset-16: 16px;
+
+

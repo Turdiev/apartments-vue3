@@ -1,0 +1,23 @@
+.container {
+  margin: 0 auto;
+  max-width: 1270px;
+  //width: calc(100vw - 30px);
+  width: 100%;
+
+  @include respond-to(tablet) {
+    width: 100%;
+    max-width: none;
+    padding-left: $x-offset-16;
+    padding-right: $x-offset-16;
+  }
+
+  @include respond-to(mobile) {
+    padding-left: $x-offset-16;
+    padding-right: $x-offset-16;
+  }
+
+  @include respond-to(sm-mobile) {
+    padding-left: $x-offset-16;
+    padding-right: $x-offset-16;
+  }
+}
