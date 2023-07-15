@@ -3,6 +3,8 @@
   max-width: 1270px;
   //width: calc(100vw - 30px);
   width: 100%;
+  padding-left: $x-offset-16;
+  padding-right: $x-offset-16;
 
   @include respond-to(tablet) {
     width: 100%;

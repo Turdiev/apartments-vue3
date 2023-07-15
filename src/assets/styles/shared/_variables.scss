@@ -8,6 +8,7 @@ $yellow: #FDC83E;
 
 $gray-700: #666666;
 $gray-600: #929292;
+$gray-300: #DEDEDE;
 $gray-200: #EFF2F9;
 $gray-100: #FAFAFA;
 
@@ -42,8 +43,8 @@ $laptop: 1270px;
 $breakpoints: (
         'sm-mobile': (max-width: $sm-mobile),
         'mobile': (max-width: $mobile),
-        'tablet': (max-width: $tablet - 1),
-        'laptop': (max-width: $laptop - 1)
+        'tablet': (max-width: $tablet),
+        'laptop': (max-width: $laptop)
 ) !default;
 
 /*
