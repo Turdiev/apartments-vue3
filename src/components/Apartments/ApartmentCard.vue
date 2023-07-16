@@ -16,11 +16,11 @@
     <div class="apartment-card__info">
       <p class="apartment-card__resident-area">ЖК «Министерские озера» </p>
       <p class="apartment-card__title">3-комнатная квартира № 262, 65.6 м²</p>
-      <p class="apartment-card__complex">
+      <div class="apartment-card__complex">
         <span>Литер 14</span>
         <span class="bullet">Этаж 10</span>
         <span class="bullet">Сдача 1 кв. 2026</span>
-      </p>
+      </div>
       <div class="apartment-card__divider" />
       <div class="apartment-card__prices">
         <p

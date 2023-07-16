@@ -6,19 +6,21 @@
     <SortingApartments
       class="apartments__sorting"
     />
-    <div class="apartments__wrapper">
-      <ApartmentCard class="apartments__item" />
-      <ApartmentCard class="apartments__item" />
-      <ApartmentCard class="apartments__item" />
-      <ApartmentCard class="apartments__item" />
-    </div>
+    <!--    <div class="apartments__wrapper">-->
+    <!--      <ApartmentCard class="apartments__item" />-->
+    <!--      <ApartmentCard class="apartments__item" />-->
+    <!--      <ApartmentCard class="apartments__item" />-->
+    <!--      <ApartmentCard class="apartments__item" />-->
+    <!--    </div>-->
+    <ApartmentList />
   </div>
 </template>
 
 <script setup>
 import FiltersApartments from "@/components/FiltersApartments.vue";
 import SortingApartments from "@/components/SortingApartments.vue";
-import ApartmentCard from "@/components/Apartments/ApartmentCard.vue";
+import ApartmentList from "@/components/Apartments/ApartmentList.vue";
+// import ApartmentCard from "@/components/Apartments/ApartmentCard.vue";
 </script>
 
 <style lang="scss" scoped>

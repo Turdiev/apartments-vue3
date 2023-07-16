@@ -52,6 +52,10 @@ const visibleTooltip = ref(false)
       font-weight: 400;
       line-height: 16px;
       color: $blue-800;
+
+      @include respond-to(sm-mobile) {
+        font-size: 10px;
+      }
     }
   }
 

@@ -36,12 +36,14 @@ $font-size: 16px;
 /*
 ** Breakpoints
 */
+$xs-mobile: 330px;
 $sm-mobile: 376px;
 $mobile: 768px;
 $tablet: 1024px;
 $laptop: 1270px;
 
 $breakpoints: (
+        'xs-mobile': (max-width: $xs-mobile),
         'sm-mobile': (max-width: $sm-mobile),
         'mobile': (max-width: $mobile),
         'tablet': (max-width: $tablet),

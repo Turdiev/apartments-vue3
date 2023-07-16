@@ -19,8 +19,7 @@ app.use(Vue3Mq, {
         'smMobile': 376,
         'mobile': 768,
         'tablet': 992,
-        'laptop': 1270,
-        'default': Infinity
+        'laptop': 1270
     }
 })
 app.mount('#app')
