@@ -49,8 +49,8 @@
 import {computed, ref} from "vue";
 import { useMq } from "vue3-mq";
 
-import VSelect from "@/components/ui/VSelect.vue";
-import VRangeInput from "@/components/ui/VRangeInput.vue";
+import VSelect from "@/components/UI/VSelect.vue";
+import VRangeInput from "@/components/UI/VRangeInput.vue";
 
 const mq = useMq();
 
@@ -113,6 +113,10 @@ const isMobile = computed(() => mq.current === 'mobile' || mq.current === 'smMob
     align-items: center;
     gap: 20px;
     width: 100%;
+
+    @include respond-to(mobile) {
+      flex-wrap: wrap;
+    }
 
     @include respond-to(sm-mobile) {
       align-items: flex-start;
@@ -188,5 +192,15 @@ const isMobile = computed(() => mq.current === 'mobile' || mq.current === 'smMob
     }
   }
 
+  &__area, &__price {
+    @include respond-to(mobile) {
+      max-width: 32.7%;
+      min-width: 155px;
+    }
+
+    @include respond-to(sm-mobile) {
+      max-width: 100%;
+    }
+  }
 }
 </style>

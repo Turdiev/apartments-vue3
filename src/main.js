@@ -16,7 +16,7 @@ app.use(ElementPlus)
 app.use(Vue3Mq, {
     breakpoints: {
         'xsMobile': 0,
-        'smMobile': 375,
+        'smMobile': 376,
         'mobile': 768,
         'tablet': 992,
         'laptop': 1270,

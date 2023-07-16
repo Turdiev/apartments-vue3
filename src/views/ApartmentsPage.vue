@@ -6,12 +6,19 @@
     <SortingApartments
       class="apartments__sorting"
     />
+    <div class="apartments__wrapper">
+      <ApartmentCard class="apartments__item" />
+      <ApartmentCard class="apartments__item" />
+      <ApartmentCard class="apartments__item" />
+      <ApartmentCard class="apartments__item" />
+    </div>
   </div>
 </template>
 
 <script setup>
 import FiltersApartments from "@/components/FiltersApartments.vue";
 import SortingApartments from "@/components/SortingApartments.vue";
+import ApartmentCard from "@/components/Apartments/ApartmentCard.vue";
 </script>
 
 <style lang="scss" scoped>
@@ -34,6 +41,18 @@ import SortingApartments from "@/components/SortingApartments.vue";
 
   &__sorting {
     margin-top: 55px;
+    margin-bottom: 48px;
+  }
+
+  &__wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  &__item {
+    margin-bottom: 30px;
   }
 }
 </style>

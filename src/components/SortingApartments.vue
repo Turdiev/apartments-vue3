@@ -29,8 +29,8 @@
 </template>
 
 <script setup>
-import IconToggleCard from "@/components/icons/IconToggleCard.vue";
-import IconToggleList from "@/components/icons/IconToggleList.vue";
+import IconToggleCard from "@/components/Icons/IconToggleCard.vue";
+import IconToggleList from "@/components/Icons/IconToggleList.vue";
 import {ref} from "vue";
 
 const activeToggle = ref('card')

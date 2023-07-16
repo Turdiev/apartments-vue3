@@ -8,7 +8,8 @@ $yellow: #FDC83E;
 
 $gray-700: #666666;
 $gray-600: #929292;
-$gray-300: #DEDEDE;
+$gray-400: #DEDEDE;
+$gray-300: #EAEAEA;
 $gray-200: #EFF2F9;
 $gray-100: #FAFAFA;
 
@@ -35,9 +36,9 @@ $font-size: 16px;
 /*
 ** Breakpoints
 */
-$sm-mobile: 375px;
+$sm-mobile: 376px;
 $mobile: 768px;
-$tablet: 992px;
+$tablet: 1024px;
 $laptop: 1270px;
 
 $breakpoints: (
