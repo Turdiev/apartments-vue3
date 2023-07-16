@@ -43,7 +43,7 @@ const visibleTooltip = ref(false)
     align-items: center;
     width: max-content;
     height: 29px;
-    background: $blue-100;
+    background: $blue-200;
     border-radius: 8px;
     padding: 6px 10px 6px 10px;
 
@@ -66,12 +66,12 @@ const visibleTooltip = ref(false)
       border-radius: 8px;
 
       &.is-customized  {
-        background: $blue-100;
-        border: 1px solid $blue-100;
+        background: $blue-200;
+        border: 1px solid $blue-200;
 
         & .el-popper__arrow::before {
-          border: 1px solid $blue-100;
-          background: $blue-100;
+          border: 1px solid $blue-200;
+          background: $blue-200;
         }
       }
 

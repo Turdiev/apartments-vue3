@@ -13,6 +13,7 @@
     <!--      <ApartmentCard class="apartments__item" />-->
     <!--    </div>-->
     <ApartmentList />
+    <ApartmentModal v-model="isOpenModal"/>
   </div>
 </template>
 
@@ -21,6 +22,10 @@ import FiltersApartments from "@/components/FiltersApartments.vue";
 import SortingApartments from "@/components/SortingApartments.vue";
 import ApartmentList from "@/components/Apartments/ApartmentList.vue";
 // import ApartmentCard from "@/components/Apartments/ApartmentCard.vue";
+import {ref} from "vue";
+import ApartmentModal from "@/components/Apartments/ApartmentModal.vue";
+
+const isOpenModal = ref(true);
 </script>
 
 <style lang="scss" scoped>
