@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 
-export const useApartment = defineStore('counter', {
+export const useApartment = defineStore('apartment', {
   state: () => ({
     allApartments: [
       {
@@ -408,6 +408,7 @@ export const useApartment = defineStore('counter', {
         'saleTrigger': ''
       }
     ],
+    successForm: false
   }),
   getters: {
     getAllApartment: state => state.allApartments,
@@ -415,7 +416,11 @@ export const useApartment = defineStore('counter', {
     getMaxPrice: state => Math.max(...state.allApartments.map(apartment => parseInt(apartment.price.replace(/\s/g, '')))),
     getMinArea: state => Math.min(...state.allApartments.map(apartment => parseInt(apartment.area.replace(/\s/g, '')))),
     getMaxArea: state => Math.max(...state.allApartments.map(apartment => parseInt(apartment.area.replace(/\s/g, '')))),
+    getStatusForm: state => state.successForm
   },
   actions: {
+    setStatusForm( status) {
+      this.successForm = status
+    }
   },
 })

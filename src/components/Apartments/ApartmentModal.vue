@@ -9,30 +9,30 @@
       </div>
       <div class="apartment-information__content">
         <div class="apartment-information__description">
-          <p class="apartment-information__title">Студия №2, 15.18 м</p>
-          <p class="apartment-information__articul">ID25801</p>
-          <p class="apartment-information__resident-area">ЖК «Кислород»</p>
-          <p class="apartment-information__deadline">Срок сдачи: 1 квартал 2026</p>
+          <p class="apartment-information__title">{{ apartment.title }}</p>
+          <p class="apartment-information__articul">ID{{ apartment.id }}</p>
+          <p class="apartment-information__resident-area">{{ apartment.objectName }}</p>
+          <p class="apartment-information__deadline">Срок сдачи: {{ apartment.deadline }}</p>
         </div>
         <div class="apartment-information__parameters">
           <p class="_name">Корпус</p>
-          <p>6</p>
+          <p>{{ apartment.literNum }}</p>
         </div>
         <div class="apartment-information__parameters">
-          <p class="_name">Корпус</p>
-          <p>6</p>
+          <p class="_name">Этаж</p>
+          <p>{{ apartment.floorNum }}</p>
         </div>
         <div class="apartment-information__parameters">
-          <p class="_name">Корпус</p>
-          <p>6</p>
+          <p class="_name">Общая площадь</p>
+          <p>{{ apartment.area }}</p>
         </div>
         <div class="apartment-information__parameters">
-          <p class="_name">Корпус</p>
-          <p>6</p>
+          <p class="_name">Жилая площадь</p>
+          <p>{{ apartment.area - apartment.areaKitchen }}</p>
         </div>
         <div class="apartment-information__price">
           <p>Стоимость</p>
-          <p class="_price">от 9 000 000 ₽</p>
+          <p class="_price">от {{ apartment.price }} ₽</p>
         </div>
       </div>
     </div>
@@ -44,6 +44,12 @@
 
 import VModal from "@/components/Modal/VModal.vue";
 import ApartmentForm from "@/components/Apartments/ApartmentForm.vue";
+
+defineProps({
+  apartment: {
+    type: Object,
+  },
+});
 </script>
 
 <style lang="scss" scoped>

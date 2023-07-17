@@ -25,6 +25,7 @@
         :key="apartment.id"
         :apartment="apartment"
         class="apartments__item"
+        @click="currentApartment = $event"
       />
     </div>
     <div
@@ -43,7 +44,11 @@
     >
       <span>По вашему запросу ничего не найдено</span>
     </div>
-    <ApartmentModal v-model="isOpenModal"/>
+    <ApartmentModal
+      v-model="currentApartment"
+      :apartment="currentApartment"
+    />
+    <SuccessModal v-model="isOpenModal"/>
   </div>
 </template>
 
@@ -53,14 +58,16 @@ import SortingApartments from "@/components/SortingApartments.vue";
 import ApartmentList from "@/components/Apartments/ApartmentList.vue";
 import ApartmentCard from "@/components/Apartments/ApartmentCard.vue";
 import ApartmentModal from "@/components/Apartments/ApartmentModal.vue";
-import {ref} from "vue";
+import { ref, watchEffect} from "vue";
 import {useApartment} from "@/store";
+import SuccessModal from "@/components/Modal/SuccessModal.vue";
 
 const store = useApartment()
 
 const isOpenModal = ref(true);
 const toggleView = ref('card');
 const selectedApartments = ref(store.getAllApartment);
+const currentApartment = ref(null);
 
 const options = [
   {
@@ -88,8 +95,14 @@ const rooms = [
   }
 ]
 
+watchEffect(() => {
+  if (store.getStatusForm) {
+    isOpenModal.value = store.getStatusForm
+    currentApartment.value = null
+  }
+})
+
 const onFilterChange = (params) => {
-  console.log('PARA', params)
   selectedApartments.value = store.getAllApartment.filter(apartment => {
     const areaNumber = parseInt(apartment.area.replace(/\s/g, ''))
     const priceNumber = parseInt(apartment.price.replace(/\s/g, ''))

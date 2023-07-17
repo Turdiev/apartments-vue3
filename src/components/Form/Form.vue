@@ -37,7 +37,9 @@
 
 <script setup>
 import {ref, reactive} from "vue";
+import {useApartment} from "@/store";
 
+const store = useApartment()
 const ruleFormRef = ref(null)
 const ruleForm = reactive({
   email: '',
@@ -107,8 +109,10 @@ const submitForm = async (formEl) => {
   await formEl.validate((valid, fields) => {
     if (valid) {
       console.log('submit!')
+      store.setStatusForm(true)
     } else {
       console.log('error submit!', fields)
+      store.setStatusForm(false)
     }
   })
 }

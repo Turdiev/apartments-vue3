@@ -61,6 +61,7 @@ defineProps({
     @include respond-to(sm-mobile) {
       max-width: 100%;
       max-height: 100%;
+      height: 100%;
     }
 
     &::-webkit-scrollbar {

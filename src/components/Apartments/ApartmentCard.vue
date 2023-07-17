@@ -1,5 +1,8 @@
 <template>
-  <div class="apartment-card">
+  <div
+    class="apartment-card"
+    @click="emits('click', apartment)"
+  >
     <div class="apartment-card__header">
       <PromotionElement />
       <div class="apartment-card__action">
@@ -54,6 +57,7 @@ import IconHeart from "@/components/Icons/IconHeart.vue";
 import IconScales from "@/components/Icons/IconScales.vue";
 import FeaturesElement from "@/components/Apartments/FeaturesElement.vue";
 
+const emits = defineEmits(['click'])
 defineProps({
   apartment: {
     type: Object,
@@ -68,6 +72,7 @@ defineProps({
   height: 522px;
   background: $white;
   border: 1px solid $gray-300;
+  cursor: pointer;
 
   @include respond-to(tablet) {
     width: 308px;
