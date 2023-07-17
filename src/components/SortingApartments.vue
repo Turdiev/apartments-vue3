@@ -13,14 +13,14 @@
       <div
         class="sorting-apartments__toggle-btn _card"
         :class="{'_active-toggle': activeToggle === 'card'}"
-        @click="activeToggle = 'card'"
+        @click="emits('click:toggle', 'card')"
       >
         <IconToggleCard class="icon-card"/>
       </div>
       <div
         class="sorting-apartments__toggle-btn _list"
         :class="{'_active-toggle': activeToggle === 'list'}"
-        @click="activeToggle = 'list'"
+        @click="emits('click:toggle', 'list')"
       >
         <IconToggleList class="icon-list"/>
       </div>
@@ -31,9 +31,14 @@
 <script setup>
 import IconToggleCard from "@/components/Icons/IconToggleCard.vue";
 import IconToggleList from "@/components/Icons/IconToggleList.vue";
-import {ref} from "vue";
 
-const activeToggle = ref('card')
+const emits = defineEmits(['click:toggle'])
+defineProps({
+  activeToggle: {
+    type: String,
+    default: '',
+  },
+});
 </script>
 
 <style lang="scss" >

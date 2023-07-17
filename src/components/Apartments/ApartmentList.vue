@@ -20,36 +20,47 @@
       <div class="apartment-list__wrapper">
         <div class="apartment-list__wrap">
           <div class="apartment-list__info">
-            <p class="apartment-list__resident-area">ЖК «Министерские озера» </p>
-            <p class="apartment-list__title">3-комнатная квартира № 262, 65.6 м²</p>
+            <p class="apartment-list__resident-area">{{ apartment.objectName}}</p>
+            <p class="apartment-list__title">{{ apartment.title }}</p>
           </div>
           <div class="apartment-list__complex">
-            <span>Литер 14</span>
-            <span>Этаж 10</span>
-            <span>Сдача 1 кв. 2026</span>
+            <span>Литер {{ apartment.literNum }}</span>
+            <span>Этаж {{ apartment.floorNum }}</span>
+            <span>Сдача {{ apartment.deadline }}</span>
           </div>
           <FeaturesElement
             v-if="isMobile || isXsMobile"
+            :features="apartment.features"
           />
         </div>
         <FeaturesElement
           v-if="isTablet"
+          :features="apartment.features"
           class="apartment-list__features"
         />
         <div class="apartment-list__prices">
-          <p class="apartment-list__old-price">12 886 400 ₽</p>
+          <p
+            v-if="apartment.oldPrice"
+            class="apartment-list__old-price"
+          >
+            {{ apartment.oldPrice }} ₽
+          </p>
           <p
             class="apartment-list__price"
-            :class="{'_new-price': true}"
+            :class="{'_new-price': apartment.oldPrice}"
           >
-            12 886 400 ₽
+            {{ apartment.price }} ₽
           </p>
-          <div class="apartment-list__percent">
-            <span>10%</span>
+          <div
+            v-if="apartment.salePercent"
+            class="apartment-list__percent"
+          >
+            <span>{{ apartment.salePercent }}</span>
           </div>
         </div>
         <FeaturesElement
           v-if="isLaptop"
+          :features="apartment.features"
         />
         <div
           v-if="!isXsMobile"
@@ -73,7 +84,12 @@ import {computed} from "vue";
 import {useMq} from "vue3-mq";
 
 const mq = useMq();
-console.log(mq);
+defineProps({
+  apartment: {
+    type: Object,
+    default: () => {},
+  },
+});
 
 const isXsMobile = computed(() => mq.current === 'xsMobile');
 const isMobile = computed(() => mq.current === 'mobile' || mq.current === 'smMobile');

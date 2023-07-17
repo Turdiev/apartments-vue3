@@ -14,27 +14,35 @@
       >
     </div>
     <div class="apartment-card__info">
-      <p class="apartment-card__resident-area">ЖК «Министерские озера» </p>
-      <p class="apartment-card__title">3-комнатная квартира № 262, 65.6 м²</p>
+      <p class="apartment-card__resident-area">{{ apartment.objectName }}</p>
+      <p class="apartment-card__title">{{ apartment.title }}</p>
       <div class="apartment-card__complex">
-        <span>Литер 14</span>
-        <span class="bullet">Этаж 10</span>
-        <span class="bullet">Сдача 1 кв. 2026</span>
+        <span>Литер {{ apartment.literNum }}</span>
+        <span class="bullet">Этаж {{ apartment.floorNum }}</span>
+        <span class="bullet">Сдача {{ apartment.deadline }}</span>
       </div>
       <div class="apartment-card__divider" />
       <div class="apartment-card__prices">
         <p
           class="apartment-card__price"
-          :class="{'_new-price': true}"
+          :class="{'_new-price': apartment.oldPrice}"
         >
-          12 886 400 ₽
+          {{ apartment.price }} ₽
         </p>
-        <p class="apartment-card__old-price">12 886 400 ₽</p>
-        <div class="apartment-card__percent">
-          <span>10%</span>
+        <p
+          v-if="apartment.oldPrice"
+          class="apartment-card__old-price"
+        >{{ apartment.oldPrice }} ₽</p>
+        <div
+          v-if="apartment.salePercent"
+          class="apartment-card__percent"
+        >
+          <span>{{ apartment.salePercent }}</span>
         </div>
       </div>
-      <FeaturesElement />
+      <FeaturesElement
+        :features="apartment.features"
+      />
     </div>
   </div>
 </template>
@@ -45,6 +53,13 @@ import PromotionElement from "@/components/Apartments/PromotionElement.vue";
 import IconHeart from "@/components/Icons/IconHeart.vue";
 import IconScales from "@/components/Icons/IconScales.vue";
 import FeaturesElement from "@/components/Apartments/FeaturesElement.vue";
+
+defineProps({
+  apartment: {
+    type: Object,
+    default: () => {},
+  },
+});
 </script>
 
 <style lang="scss" scoped>
@@ -96,6 +111,7 @@ import FeaturesElement from "@/components/Apartments/FeaturesElement.vue";
   }
 
   &__title {
+    height: 40px;
     font-size: 16px;
     font-weight: 600;
     line-height: 20px;

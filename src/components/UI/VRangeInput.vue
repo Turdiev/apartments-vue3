@@ -1,45 +1,91 @@
 <template>
   <div class="v-range-input">
-    <label>{{ props.label }}</label>
+    <label>{{ label }}</label>
     <div class="v-range-input__wrapper">
       <div class="v-range-input__item-list">
         <div class="v-range-input__item">
           <input
-            id="from-area"
+            id="min"
+            v-model="minInputValue"
             type="number"
             class="v-range-input__input"
+            @input="onInputChange($event, 0)"
           >
         </div>
         <div class="v-range-input__divider" />
         <div class="v-range-input__item">
           <input
-            id="price"
+            id="max"
+            v-model="maxInputValue"
             type="number"
             class="v-range-input__input"
+            @input="onInputChange($event, 1)"
           >
         </div>
       </div>
       <el-slider
-        v-model="value"
+        v-model="rangeValue"
         range
         :show-tooltip="false"
-        :max="10000"
+        :min="minValue"
+        :max="maxValue"
+        @change="onRangeChange($event)"
       />
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, watchEffect} from 'vue'
 
+const emits = defineEmits(['change'])
 const props = defineProps({
   label: {
     type: String,
     default: '',
   },
+  minValue: {
+    type: Number,
+    default: 0,
+  },
+  maxValue: {
+    type: Number,
+    default: 0,
+  },
+  minValueInput: {
+    type: Number,
+    default: 0,
+  },
+  maxValueInput: {
+    type: Number,
+    default: 0,
+  },
 });
 
-const value = ref([0, 10000])
+const rangeValue = ref([props.minValueInput, props.maxValueInput])
+const minInputValue = ref(props.minValueInput)
+const maxInputValue = ref(props.maxValueInput)
+
+watchEffect(() => {
+  if (props.minValueInput) minInputValue.value = props.minValueInput
+  if (props.maxValueInput) maxInputValue.value = props.maxValueInput
+})
+const onRangeChange = (value) => {
+  emits('change', value)
+}
+const onInputChange = (event, index) => {
+  let val = Number(event.target.value)
+  if (index === 0) {
+    if (val >= rangeValue.value[1]) val = rangeValue.value[1] - 1;
+    if (val < props.minValue) val = props.minValue;
+    rangeValue.value = [val, rangeValue.value[1]]
+  } else {
+    if (val <= rangeValue.value[0]) val = rangeValue.value[0] + 1;
+    if (val > props.maxValue) val = props.maxValue;
+    rangeValue.value = [rangeValue.value[0], val]
+  }
+  emits('change', rangeValue.value)
+}
 </script>
 <style lang="scss" >
 .v-range-input {

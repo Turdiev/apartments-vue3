@@ -26,13 +26,12 @@
 import IconClose from "@/components/Icons/IconClose.vue";
 
 const emits = defineEmits(["update:modelValue"]);
-const props = defineProps({
+defineProps({
   modelValue: {
     type: Boolean,
     default: false,
   },
 });
-console.log(props)
 </script>
 
 <style lang="scss" scoped>
@@ -79,9 +78,9 @@ console.log(props)
   }
 
   &__close {
-    position: fixed;
-    top: 70px;
-    right: 70px;
+    position: absolute;
+    top: 20px;
+    right: 20px;
     display: flex;
     justify-content: center;
     align-items: center;

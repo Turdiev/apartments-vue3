@@ -21,7 +21,7 @@
             :key="room.value"
             class="filters-apartments__room"
             :class="{'active-room': selectRoom === room.value}"
-            @click="selectRoom = room.value"
+            @click="selectedRoom(room)"
           >
             {{ room.value }}
           </div>
@@ -29,11 +29,21 @@
       </div>
       <VRangeInput
         label="Площадь, м2"
+        :min-value="minArea"
+        :max-value="maxArea"
+        :min-value-input="areaFilterValue[0]"
+        :max-value-input="areaFilterValue[1]"
         class="filters-apartments__area"
+        @change="onChangeArea"
       />
       <VRangeInput
         label="Стоимость, млн ₽"
+        :min-value="minPrice"
+        :max-value="maxPrice"
+        :min-value-input="priceFilterValue[0]"
+        :max-value-input="priceFilterValue[1]"
         class="filters-apartments__price"
+        @change="onChangePrice"
       />
     </div>
     <VSelect
@@ -46,55 +56,66 @@
 </template>
 
 <script setup>
-import {computed, ref} from "vue";
+import {computed, reactive, ref} from "vue";
 import { useMq } from "vue3-mq";
 
 import VSelect from "@/components/UI/VSelect.vue";
 import VRangeInput from "@/components/UI/VRangeInput.vue";
 
 const mq = useMq();
+const emits = defineEmits(['change'])
+const props = defineProps({
+  options: {
+    type: Array,
+  },
+  rooms: {
+    type: Array
+  },
+  minPrice: {
+    type: Number,
+    default: 0,
+  },
+  maxPrice: {
+    type: Number,
+    default: 0,
+  },
+  minArea: {
+    type: Number,
+    default: 0,
+  },
+  maxArea: {
+    type: Number,
+    default: 0,
+  },
+});
+
 
 const selectRoom = ref(null);
-
-const options = [
-  {
-    value: 'Option1',
-    label: 'Option1',
-  },
-  {
-    value: 'Option2',
-    label: 'Option2',
-  },
-  {
-    value: 'Option3',
-    label: 'Option3',
-  },
-  {
-    value: 'Option4',
-    label: 'Option4',
-  },
-  {
-    value: 'Option5',
-    label: 'Option5',
-  },
-]
-
-const rooms = [
-  {
-    value: 'Ст'
-  },
-  {
-    value: '1'
-  },
-  {
-    value: '2'
-  },
-  {
-    value: '3+'
-  }
-]
+const priceFilterValue = ref([props.minPrice, props.maxPrice]);
+const areaFilterValue = ref([props.minArea, props.maxArea]);
+const filterParams = reactive({
+  room: '',
+  price: [props.minPrice, props.maxPrice],
+  area: [props.minArea, props.maxArea]
+})
 
 const isMobile = computed(() => mq.current === 'mobile' || mq.current === 'smMobile');
+
+const onChangePrice = (value) => {
+  priceFilterValue.value = value
+  filterParams.price = value
+  emits('change', filterParams)
+}
+const onChangeArea = (value) => {
+  areaFilterValue.value = value
+  filterParams.area = value
+  emits('change', filterParams)
+}
+const selectedRoom = (room) => {
+  selectRoom.value = room.value
+  filterParams.room = room
+  emits('change', filterParams)
+}
 </script>
 
 <style lang="scss" scoped>

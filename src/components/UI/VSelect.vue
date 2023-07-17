@@ -31,7 +31,7 @@ const props = defineProps({
   }
 });
 
-const value = ref('')
+const value = ref(props.options[0])
 
 </script>
 

@@ -1,26 +1,34 @@
 <template>
   <div class="features">
     <div class="features__item">
-      <span>Отделка</span>
+      <span>{{ features[0] }}</span>
     </div>
-    <div class="features__item">
-      <span>Вид на горы</span>
+    <div
+      v-if="features[1]"
+      class="features__item"
+    >
+      <span>{{ features[1] }}</span>
     </div>
     <el-tooltip
+      v-if="features.length > 2"
       :visible="visibleTooltip"
       popper-class="features__tooltip"
       effect="customized"
     >
       <template #content>
-        <span>Лоджия </span>
-        <span>Рассрочка</span>
+        <span
+          v-for="feature in features.slice(2)"
+          :key="feature"
+        >
+          {{ feature }}
+        </span>
       </template>
       <div
         class="features__item"
         @mouseenter="visibleTooltip = true"
         @mouseleave="visibleTooltip = false"
       >
-        <span>+2</span>
+        <span>+{{ features.length - 2 }}</span>
       </div>
     </el-tooltip>
   </div>
@@ -28,6 +36,13 @@
 
 <script setup>
 import {ref} from "vue";
+
+defineProps({
+  features: {
+    type: Array,
+    default: () => [],
+  },
+});
 
 const visibleTooltip = ref(false)
 </script>
